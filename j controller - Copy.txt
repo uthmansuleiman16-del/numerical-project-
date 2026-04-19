@@ -1,0 +1,45 @@
+// ==========================================
+// MAIN CONTROLLER FUNCTION
+// Chooses method dynamically based on UI
+// ==========================================
+
+function runMethod() {
+
+    // =============================
+    // GET SELECTED METHOD
+    // =============================
+    const method = document.getElementById("methodSelect").value;
+
+    // =============================
+    // GET USER INPUTS
+    // =============================
+    const expr = document.getElementById("functionInput").value;
+    const xl = parseFloat(document.getElementById("xl").value);
+    const xu = parseFloat(document.getElementById("xu").value);
+    const tol = parseFloat(document.getElementById("tol").value);
+    const maxIter = parseInt(document.getElementById("maxIter").value);
+
+    // Convert string → function
+    const f = parseFunction(expr);
+
+    let results = [];
+
+    // =============================
+    // METHOD SWITCHING (CORE IDEA)
+    // =============================
+    if (method === "bisection") {
+
+        // Call Bisection
+        results = bisectionMethod(f, xl, xu, tol, maxIter);
+
+    } else if (method === "falsePosition") {
+
+        // Call False Position
+        results = falsePositionMethod(f, xl, xu, tol, maxIter);
+    }
+
+    // =============================
+    // DISPLAY RESULTS
+    // =============================
+    displayResults(results);
+}
