@@ -24,8 +24,6 @@ canvas { background:white; margin-top:20px; }
 <p> Maths machine (Interpolation)</p>
 </header>
 
-<main>
-
 <select id="mode" onchange="switchMode()">
 <option value="roots">Root Finding</option>
 <option value="linear">Linear Systems</option>
@@ -58,7 +56,92 @@ canvas { background:white; margin-top:20px; }
 </select>
 <button onclick="solveLinear()">Solve</button>
 </div>
+<!-- ====================================== -->
+<!-- METHOD SELECTOR -->
+<!-- ====================================== -->
 
+<label>Select Method:</label>
+
+<select id="methodSelect" onchange="toggleInputs()">
+
+    <option value="secant">Secant Method</option>
+
+    <option value="gaussJordan">
+        Gauss-Jordan
+    </option>
+
+    <option value="cramer">
+        Cramer's Rule
+    </option>
+
+</select>
+
+
+
+<!-- ====================================== -->
+<!-- ROOT FINDING INPUTS -->
+<!-- Only used for Secant
+<!-- ====================================== -->
+
+<div id="rootInputs">
+
+<label>Function f(x)</label>
+<input id="functionInput"
+placeholder="x*x - 4">
+
+<label>x0</label>
+<input id="x0" type="number">
+
+<label>x1</label>
+<input id="x1" type="number">
+
+<label>Tolerance (%)</label>
+<input id="tol"
+value="0.01"
+type="number">
+
+<label>Max Iterations</label>
+<input id="maxIter"
+value="50"
+type="number">
+
+</div>
+
+
+
+<!-- ====================================== -->
+<!-- LINEAR SYSTEM INPUTS
+<!-- Used for Gauss-Jordan and Cramer
+<!-- ====================================== -->
+
+<div id="linearInputs"
+style="display:none;">
+
+<label>Matrix A</label>
+
+<textarea id="matrixA"
+rows="5"
+placeholder="2,1
+5,7"></textarea>
+
+
+<label>Vector B</label>
+
+<input id="vectorB"
+placeholder="11,13">
+
+</div>
+
+
+
+<button onclick="runMethod()">
+Run Method
+</button>
+
+
+
+<!-- RESULTS -->
+<div id="resultBox"></div>
 <!-- ================= INTERPOLATION SECTION ================= -->
 <div id="interpSection" class="hidden">
 
